@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
+    tools:context=".MainActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <!--<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+        <!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+        <!--    xmlns:tools="http://schemas.android.com/tools"-->
+        <!--    android:layout_width="match_parent"-->
+        <!--    android:layout_height="match_parent"-->
+        <!--    tools:context=".MainActivity">-->
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/topNewsStoriesRecyclerView"
+            android:layout_width="409dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/topStoriesTextView" />
+
+        <TextView
+            android:id="@+id/topStoriesTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:capitalize="none"
+            android:gravity="center_horizontal"
+            android:onClick="newStoryOnClick"
+            android:text="Top Stories"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/newsTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
+            android:gravity="center_horizontal"
+            android:text="News"
+            android:textColor="#000000"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.044"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/topNewsStoriesRecyclerView" />
+
+        <ScrollView
+            android:id="@+id/scrollView2"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:fillViewport="true"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/newsTextView">
+
+
+            <androidx.gridlayout.widget.GridLayout
+                android:id="@+id/newsGridLayout"
+                android:layout_width="fill_parent"
+                android:layout_height="409dp"
+                android:layout_marginTop="12dp"
+                android:foregroundGravity="center_horizontal"
+                app:columnCount="2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/newsTextView"
+                app:rowCount="2">
+
+                <ImageView
+                    android:id="@+id/newsStoryImageView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="120dp"
+                    android:onClick="newStoryOnClick"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:tag="0"
+                    app:layout_column="0"
+                    app:layout_columnWeight="1"
+                    app:layout_row="0"
+                    tools:srcCompat="@tools:sample/avatars" />
+
+                <TextView
+                    android:id="@+id/newsStoryTitleTextView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="120dp"
+                    android:ellipsize="end"
+                    android:maxWidth="90dp"
+                    android:maxLines="2"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:tag="TAG_NEWS_TITLE"
+                    android:text="News Title"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_column="0"
+
+                    app:layout_columnWeight="1"
+                    app:layout_row="0" />
+
+                <TextView
+                    android:id="@+id/newsStoryDescriptionTextView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="157dp"
+                    android:maxWidth="90dp"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:text="TextView"
+                    app:layout_column="0"
+                    app:layout_columnWeight="1"
+                    app:layout_row="0" />
+
+                <ImageView
+                    android:id="@+id/newsStoryImageView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="120dp"
+                    android:onClick="newStoryOnClick"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:tag="1"
+                    app:layout_column="1"
+                    app:layout_columnWeight="1"
+                    app:layout_row="0"
+                    tools:srcCompat="@tools:sample/avatars" />
+
+                <TextView
+                    android:id="@+id/newsStoryTitleTextView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="120dp"
+                    android:ellipsize="end"
+                    android:maxWidth="90dp"
+                    android:maxLines="2"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:text="News Title"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_column="1"
+                    app:layout_columnWeight="1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_row="0" />
+
+                <TextView
+                    android:id="@+id/newsStoryDescriptionTextView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="157dp"
+                    android:maxWidth="90dp"
+                    android:paddingStart="10dp"
+                    android:text="TextView"
+                    app:layout_column="1"
+                    app:layout_columnWeight="1"
+                    app:layout_row="0" />
+
+                <ImageView
+                    android:id="@+id/newsStoryImageView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="120dp"
+                    android:layout_marginTop="15dp"
+                    android:onClick="newStoryOnClick"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:tag="2"
+                    app:layout_column="0"
+                    app:layout_columnWeight="1"
+                    app:layout_row="1"
+                    tools:srcCompat="@tools:sample/avatars" />
+
+                <TextView
+                    android:id="@+id/newsStoryTitleTextView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="135dp"
+                    android:ellipsize="end"
+                    android:maxWidth="90dp"
+                    android:maxLines="2"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:text="News Title"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_column="0"
+                    app:layout_columnWeight="1"
+                    app:layout_row="1" />
+
+                <TextView
+                    android:id="@+id/newsStoryDescriptionTextView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="170dp"
+                    android:maxWidth="90dp"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:text="TextView"
+                    app:layout_column="0"
+                    app:layout_columnWeight="1"
+                    app:layout_row="1" />
+
+                <ImageView
+                    android:id="@+id/newsStoryImageView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="120dp"
+                    android:layout_marginTop="15dp"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:onClick="newStoryOnClick"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:tag="3"
+                    app:layout_column="1"
+                    app:layout_columnWeight="1"
+                    app:layout_row="1"
+                    tools:srcCompat="@tools:sample/avatars" />
+
+                <TextView
+                    android:id="@+id/newsStoryTitleTextView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="135dp"
+                    android:ellipsize="end"
+                    android:maxWidth="90dp"
+                    android:maxLines="2"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:text="News Title"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_column="1"
+                    app:layout_columnWeight="1"
+                    app:layout_row="1" />
+
+                <TextView
+                    android:id="@+id/newsStoryDescriptionTextView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="170dp"
+                    android:maxWidth="90dp"
+                    android:paddingStart="10dp"
+                    android:text="TextView"
+                    app:layout_column="1"
+                    app:layout_columnWeight="1"
+                    app:layout_row="1" />
+
+            </androidx.gridlayout.widget.GridLayout>
+
+        </ScrollView>
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/newsStoryFragment"
+            android:name="com.tieutech.newsapp.NewsStoryFragment"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <!--</android.support.constraint.ConstraintLayout>-->
+
+</ScrollView>
