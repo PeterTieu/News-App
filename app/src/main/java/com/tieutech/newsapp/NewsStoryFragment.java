@@ -59,8 +59,7 @@ public class NewsStoryFragment extends Fragment {
             R.drawable.news_story_image_13,
             R.drawable.news_story_image_14,
             R.drawable.news_story_image_15,
-            R.drawable.news_story_image_16
-    };
+            R.drawable.news_story_image_16};
 
     //Titles
     String[] relatedNewsStoryTitleList = {
@@ -69,8 +68,7 @@ public class NewsStoryFragment extends Fragment {
             "Elon Musk and Jeff Bezos go head to head in satellite battle",
             "Hubble Space Telescope spies Earendel in furthest ever look back in time",
             "Carbon innovation needed on larger scale to fight climate change",
-            "Cryptocurrency exchanges shun EU anti-laundering directive"
-    };
+            "Cryptocurrency exchanges shun EU anti-laundering directive"};
 
     //Descriptions
     String[] relatedNewsStoryDescriptionList = {
@@ -79,8 +77,7 @@ public class NewsStoryFragment extends Fragment {
             "Amazon has bought space on scores of rockets to launch its $10 billion network of satellites as it tries to compete with Elon Musk in the quest to deliver a fully operational internet service.",
             "Astronomers have looked further back in time than ever before to glimpse a star as it looked 12.9 billion years ago — a discovery made possible by the Hubble Space Telescope and an extraordinary wrinkle in the fabric of space. Earendel — an Old English term for “morning star” — formed within the first billion years after the Big Bang, when the universe was 7 per cent of its present age. The most distant single star ever seen, it is 50 times the mass of our sun and millions of times as bright",
             "Drastic action is needed to limit climate change, including sucking CO2 out of the air, the UN has warned. The process has been used for more than 50 years on a small scale: on submarines to keep the crew alive; spacecraft use something similar for astronauts. Removing CO2 on a large scale is a different proposition but is urgently needed, the Intergovernmental Panel on Climate Change (IPCC) says.",
-            "No cryptocurrency exchanges have registered with the Central Bank almost a year after an EU anti-money laundering and financial terrorism directive requiring them to do so came into force. The bank said it was engaging with a “significant” number of firms in relation to applications for registration and their anti-money laundering frameworks. It said it has “prioritised” the assessment of applications."
-    };
+            "No cryptocurrency exchanges have registered with the Central Bank almost a year after an EU anti-money laundering and financial terrorism directive requiring them to do so came into force. The bank said it was engaging with a “significant” number of firms in relation to applications for registration and their anti-money laundering frameworks. It said it has “prioritised” the assessment of applications."};
 
     //================ DEFINE METHODS ================
     // TODO: Rename parameter arguments, choose names that match

@@ -46,8 +46,7 @@ public class MainActivity extends AppCompatActivity implements TopNewsStoryRecyc
             R.drawable.news_story_image_3,
             R.drawable.news_story_image_4,
             R.drawable.news_story_image_5,
-            R.drawable.news_story_image_6
-    };
+            R.drawable.news_story_image_6};
 
     //Titles
     String[] topNewsStoryTitleList = {
@@ -56,8 +55,7 @@ public class MainActivity extends AppCompatActivity implements TopNewsStoryRecyc
             "Twitter is adding an edit button",
             "Elon Musk’s net worth soars as he is appointed to Twitter board",
             "Wall Street suffers biggest slide in more than a year as oil prices surge",
-            "Virgin Australia and Qantas launch airfares sale in WA and across Australia"
-    };
+            "Virgin Australia and Qantas launch airfares sale in WA and across Australia"};
 
     //Descriptions
     String[] topNewsStoryDescriptionList = {
@@ -66,8 +64,7 @@ public class MainActivity extends AppCompatActivity implements TopNewsStoryRecyc
             "It’s a feature that Twitter users have been requesting for so long that it’s become a meme, but now the mythical “edit button” is actually becoming a reality. Twitter has announced that it’s working to allow users to edit their tweets after posting them.",
             "Elon Musk is now the richest man ever — by a fair margin. The Tesla CEO’s fortune has shot up as the stock price of his companies, Tesla and SpaceX, continues to rise. The net worth of the world’s richest man has soared to $395 billion (USD$300 billion).",
             "The S&P 500 fell 3%, its biggest decline in 16 months, after a barrel of US oil surged to $130 overnight on the possibility the US could bar imports from Russia. Stocks around the world also fell earlier in the day, taking their cue from oil’s movements, though their losses moderated as crude receded toward $120 per barrel.",
-            "A cheap airfares bonanza is enticing travellers to holiday in WA and across the nation. Virgin Australia has launched a massive 1.5 million “cheap” seats with one-way prices as low as $149 to Adelaide in economy class. And there is a further bonus 25 per cent discount for children aged two to 11."
-    };
+            "A cheap airfares bonanza is enticing travellers to holiday in WA and across the nation. Virgin Australia has launched a massive 1.5 million “cheap” seats with one-way prices as low as $149 to Adelaide in economy class. And there is a further bonus 25 per cent discount for children aged two to 11."};
 
     //======> NEWS STORIES (data) <======
     //Image resources
@@ -75,24 +72,21 @@ public class MainActivity extends AppCompatActivity implements TopNewsStoryRecyc
             R.drawable.news_story_image_7,
             R.drawable.news_story_image_8,
             R.drawable.news_story_image_9,
-            R.drawable.news_story_image_10
-    };
+            R.drawable.news_story_image_10};
 
     //Titles
     String[] newsStoryTitleList = {
             "Huge mansion with cinema room and sauna you can book for a weekend break",
             "‘Clear message’: Labor promises to bid to host global climate change summit if elected",
             "How worried should we be about the new ‘Deltacron’ COVID hybrid?",
-            "Manchester City 1-0 Atlético Madrid: Champions League quarter-final, first leg – as it happened"
-    };
+            "Manchester City 1-0 Atlético Madrid: Champions League quarter-final, first leg – as it happened"};
 
     //Descriptions
     String[] newsStoryDescriptionList = {
             "Just one hour and twenty minutes away from Liverpool is Moorlands in Foulridge , a luxurious mansion that sleeps a whopping 27 people. With a main house and a coach house, the setting is like something straight from a movie with a beautiful private garden and plenty of dreamy features.",
             "Australia would bid to host a United Nations climate change summit in partnership with other Pacific nations if Labor won next month’s federal election as part of the federal opposition’s bid to improve the nation’s credentials with the region on the issue.",
             "For some, news of new COVID-19 variants, which appear to have formed when different strains of the virus combine, sounds like a worst-case scenario. And it’s little comfort that they have appeared as many of Australia’s measures to control the pandemic are being wound back, including reopening our borders to more and more of the world.",
-            "“It was a very hard game. They played so defensively and they’re solid. They played almost 5-5-0 and it’s very hard to find spaces. I would recommend to anyone who says something about our performance to try it on the training pitch."
-    };
+            "“It was a very hard game. They played so defensively and they’re solid. They played almost 5-5-0 and it’s very hard to find spaces. I would recommend to anyone who says something about our performance to try it on the training pitch."};
 
     //================ DEFINE METHODS ================
     @Override
