@@ -14,31 +14,32 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
-
-
-
+//ABOUT:
+//Main activity of the application
 public class MainActivity extends AppCompatActivity implements TopNewsStoryRecyclerViewAdapter.OnNewsStoriesListener {
 
-
-
+    //================ DECLARE VARIABLES ================
+    //Key variables - to send data to the News Story Fragment
     public static String NEWS_STORY_IMAGE_INT = "news_story_image_int";
     public static String NEWS_STORY_TITLE = "news_story_title";
     public static String NEW_STORY_DESCRIPTION = "news_story_description";
 
+    //RecyclerView variables
     RecyclerView topNewsStoryRecyclerView;
     TopNewsStoryRecyclerViewAdapter topNewsStoryRecyclerViewAdapter;
 
-    Fragment fragment;
-
-    List<NewsStory> topNewsStoryArrayList = new ArrayList<>();
-    public List<NewsStory> newsStoryArrayList = new ArrayList<>();
-
+    //GridLayout variable
     GridLayout newsGridLayout;
 
+    //Data variables
+    List<NewsStory> topNewsStoryArrayList = new ArrayList<>(); //Top News List (for the Horizontal RecyclerView section)
+    List<NewsStory> newsStoryArrayList = new ArrayList<>(); //News Story List (for the middle section)
+
+    //======> TOP NEWS (data) <======
+    //Image resources
     int[] topNewsStoryImageList = {
             R.drawable.news_story_image_1,
             R.drawable.news_story_image_2,
@@ -48,6 +49,7 @@ public class MainActivity extends AppCompatActivity implements TopNewsStoryRecyc
             R.drawable.news_story_image_6
     };
 
+    //Titles
     String[] topNewsStoryTitleList = {
             "Bridgerton: A New Prequel Will Track Queen Charlotte's Origin Story",
             "The harsh twist in the TV comedy about Ukraine’s accidental president",
@@ -57,6 +59,7 @@ public class MainActivity extends AppCompatActivity implements TopNewsStoryRecyc
             "Virgin Australia and Qantas launch airfares sale in WA and across Australia"
     };
 
+    //Descriptions
     String[] topNewsStoryDescriptionList = {
             "It’s the line that Anthony delivers to Kate in the latest series of Bridgerton, but the same could be said of how I feel about Bridgerton — a show that’s both compelling and infuriating.",
             "Servant of the People is a good comedy that you might feel bad for laughing at. History hasn’t simply passed by this 2015 satire about an everyman made leader of his country – it has amplified the concept and made us look at it anew.",
@@ -66,7 +69,8 @@ public class MainActivity extends AppCompatActivity implements TopNewsStoryRecyc
             "A cheap airfares bonanza is enticing travellers to holiday in WA and across the nation. Virgin Australia has launched a massive 1.5 million “cheap” seats with one-way prices as low as $149 to Adelaide in economy class. And there is a further bonus 25 per cent discount for children aged two to 11."
     };
 
-
+    //======> NEWS STORIES (data) <======
+    //Image resources
     int[] newsStoryImageList = {
             R.drawable.news_story_image_7,
             R.drawable.news_story_image_8,
@@ -74,6 +78,7 @@ public class MainActivity extends AppCompatActivity implements TopNewsStoryRecyc
             R.drawable.news_story_image_10
     };
 
+    //Titles
     String[] newsStoryTitleList = {
             "Huge mansion with cinema room and sauna you can book for a weekend break",
             "‘Clear message’: Labor promises to bid to host global climate change summit if elected",
@@ -81,6 +86,7 @@ public class MainActivity extends AppCompatActivity implements TopNewsStoryRecyc
             "Manchester City 1-0 Atlético Madrid: Champions League quarter-final, first leg – as it happened"
     };
 
+    //Descriptions
     String[] newsStoryDescriptionList = {
             "Just one hour and twenty minutes away from Liverpool is Moorlands in Foulridge , a luxurious mansion that sleeps a whopping 27 people. With a main house and a coach house, the setting is like something straight from a movie with a beautiful private garden and plenty of dreamy features.",
             "Australia would bid to host a United Nations climate change summit in partnership with other Pacific nations if Labor won next month’s federal election as part of the federal opposition’s bid to improve the nation’s credentials with the region on the issue.",
@@ -88,189 +94,118 @@ public class MainActivity extends AppCompatActivity implements TopNewsStoryRecyc
             "“It was a very hard game. They played so defensively and they’re solid. They played almost 5-5-0 and it’s very hard to find spaces. I would recommend to anyone who says something about our performance to try it on the training pitch."
     };
 
-
-
-
-
+    //================ DEFINE METHODS ================
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        fragment = (Fragment) findViewById(R.id.fragment);
+        //Obtain Views
+        topNewsStoryRecyclerView = (RecyclerView) findViewById(R.id.topNewsStoriesRecyclerView); //RecyclerView to contain Top Stories
+        newsGridLayout = (GridLayout) findViewById(R.id.newsGridLayout); //Grid Layout to contain News Stories
 
+        //RecyclerViewAdapter to link the RecyclerView for Top Stories to the data
+        topNewsStoryRecyclerViewAdapter = new TopNewsStoryRecyclerViewAdapter(topNewsStoryArrayList, this, this); //Instantiate the Recyclerview Adapter
+        topNewsStoryRecyclerView.setAdapter(topNewsStoryRecyclerViewAdapter); //Set the Adapter to the RecyclerView
 
-
-        //Obtain RecyclerView view (inside activity_main.xml)
-        topNewsStoryRecyclerView = (RecyclerView) findViewById(R.id.topNewsStoriesRecyclerView);
-        newsGridLayout = (GridLayout) findViewById(R.id.newsGridLayout);
-
-
-
-
-
-
-        //Create RecyclerViewAdapter (which links the RecyclerView to the data)
-        topNewsStoryRecyclerViewAdapter = new TopNewsStoryRecyclerViewAdapter(topNewsStoryArrayList, this, this);
-        topNewsStoryRecyclerView.setAdapter(topNewsStoryRecyclerViewAdapter);
-
-
+        //LinearLayoutManager to set the layout of the RecyclerView (and make it horizontal)
         LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
-        topNewsStoryRecyclerView.setLayoutManager(layoutManager);
+        topNewsStoryRecyclerView.setLayoutManager(layoutManager); //Link the LayoutManager to the RecyclerView
 
+        //Instantiate all the Top News Story objects and add them to the topNewsStoryArrayList
         for (int i = 0; i < topNewsStoryImageList.length; i++) {
             NewsStory topNewsStory = new NewsStory(topNewsStoryImageList[i], topNewsStoryTitleList[i], topNewsStoryDescriptionList[i]);
             topNewsStoryArrayList.add(topNewsStory);
         }
 
-
-
-
-
-
-
-        //CHECKPOINT: Check how many views are in the newsGridLayout view
-        Log.i("getChildCount", newsGridLayout.getChildCount() + "");
-
+        //Instantiate all the Top News Story objects and add them to the topNewsStoryArrayList
         for (int i = 0; i < newsStoryImageList.length; i++) {
-
             NewsStory newsStory = new NewsStory(newsStoryImageList[i], newsStoryTitleList[i], newsStoryDescriptionList[i]);
-
             newsStoryArrayList.add(newsStory);
         }
 
+        //===== Modify the view elements of the GridLayout to display the News Stories ====
 
-        int newsStoryIndex = 0;
+        //CHECKPOINT: Check how many views are in the newsGridLayout view
+        Log.i("Child #", newsGridLayout.getChildCount() + "");
 
+        int newsStoryIndex = 0; //Index for the News Story that is being focussed on to
+
+        //Loop through all of the views inside the Grid Layout of the News Stories
         for (int i = 0; i < newsGridLayout.getChildCount(); i++) {
 
-            View child = newsGridLayout.getChildAt(i);
+            View child = newsGridLayout.getChildAt(i); //Obtain the child view
 
+            //If the view is the ImageView (i.e. the image of the News Story)
             if (child instanceof ImageView) {
                 ((ImageView) child).setImageResource(newsStoryArrayList.get(newsStoryIndex).getImage());
-            } else if ((child instanceof TextView) && (i == 1 || i == 4 || i == 7 || i == 10)) {
-                ((TextView) child).setText(newsStoryArrayList.get(newsStoryIndex).getTitle());
-            } else if ((child instanceof TextView) && (i == 2 || i == 5 || i == 8 || i == 11)) {
-                ((TextView) child).setText(newsStoryArrayList.get(newsStoryIndex).getDescription());
-                newsStoryIndex++;
             }
-
+            //If the view is the FIRST TextView of a News Story (i.e. the Description)
+            else if ((child instanceof TextView) && (i == 1 || i == 4 || i == 7 || i == 10)) {
+                ((TextView) child).setText(newsStoryArrayList.get(newsStoryIndex).getTitle());
+            }
+            //If the view is the SECOND TextView of a News Story (i.e. the Title)
+            else if ((child instanceof TextView) && (i == 2 || i == 5 || i == 8 || i == 11)) {
+                ((TextView) child).setText(newsStoryArrayList.get(newsStoryIndex).getDescription());
+                newsStoryIndex++; //Increment the News Story Index
+            }
         }
 
-
-
-
-
-
-        FragmentManager manager = getSupportFragmentManager();
-        FragmentTransaction ft = manager.beginTransaction();
-        Fragment bottomFragment = manager.findFragmentById(R.id.newsStoryFragment);
-        ft.hide(bottomFragment);
-        ft.commit();
+        hideNewsStoryFragment(); //Hide the News Story Fragment
     }
 
+    //Hide the News Story Fragment
+    public void hideNewsStoryFragment() {
+        //Obtain the Fragment Manager and Fragment Transaction
+        FragmentManager fragmentManager = getSupportFragmentManager(); //Create a Fragment Manager
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction(); //Create a Fragment Transaction from the Fragment Manager
 
-
-
-
-
-
-    public void recyclerViewItemOnClick(View view) {
-
-//        TopNewsStoryRecyclerViewAdapter.ViewHolder viewHolder = (TopNewsStoryRecyclerViewAdapter.ViewHolder) view.getTag();
-//
-//        Log.i("tagg", viewHolder.toString());
-//
-//        topNewsStoryRecyclerView.getTag();
-        Log.i("tagg", topNewsStoryRecyclerView.getTag() + "");
-
+        //Obtain the Fragment and link it to the Fragment Transaction
+        Fragment fragment = fragmentManager.findFragmentById(R.id.newsStoryFragment); //Obtain the Fragment from the Fragment Container View view
+        fragmentTransaction.hide(fragment); //Hide the Fragment
+        fragmentTransaction.commit(); //Commit the Fragment Transaction
     }
 
+    //Open the News Story Fragment
+    public void openNewsStoryFragment(Bundle bundle) {
+        //Obtain the Fragment Manager and Fragment Transaction
+        FragmentManager fragmentManager = getSupportFragmentManager(); //Create a Fragment Manager
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction(); //Create a Fragment Transaction from the Fragment Manager
 
+        //Obtain the Fragment and link it to the Fragment Transaction
+        Fragment newsStoryFragment = new NewsStoryFragment(); //Instantiate the News Story Fragment
+        newsStoryFragment.setArguments(bundle); //Set the Bundle to the Fragment
+        fragmentTransaction.replace(R.id.newsStoryFragment, newsStoryFragment).addToBackStack("tag").commit(); //Commit the Fragment Transaction
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    //OnClick listener: For each of the News Story images (ImageView)
     public void newStoryOnClick(View view) {
+        ImageView newStoryImageView = (ImageView) view; //Obtain the ImageView
 
-        ImageView newStoryImageView = (ImageView) view;
+        int newStoryImageViewTag = Integer.parseInt(newStoryImageView.getTag().toString()); //Obtain the tag set for each ImageView
 
-        Bundle bundle = new Bundle();
+        //==== Send data to the News Story Fragment ====
+        Bundle bundle = new Bundle(); //Create a Bundle to send data to the NewsStoryFragment
+        bundle.putInt(NEWS_STORY_IMAGE_INT, newsStoryArrayList.get(newStoryImageViewTag).getImage()); //Send the Resource ID (int) of the Image Resource of the selected News Story
+        bundle.putString(NEWS_STORY_TITLE, newsStoryArrayList.get(newStoryImageViewTag).getTitle()); //Send the Title of the selected News Story
+        bundle.putString(NEW_STORY_DESCRIPTION, newsStoryArrayList.get(newStoryImageViewTag).getDescription()); //Send the Description of the selected News Story
 
-
-        int newStoryImageViewTag = Integer.parseInt(newStoryImageView.getTag().toString());
-
-
-        bundle.putInt(NEWS_STORY_IMAGE_INT, newsStoryArrayList.get(newStoryImageViewTag).getImage());
-        bundle.putString(NEWS_STORY_TITLE, newsStoryArrayList.get(newStoryImageViewTag).getTitle());
-        bundle.putString(NEW_STORY_DESCRIPTION, newsStoryArrayList.get(newStoryImageViewTag).getDescription());
-
-        Log.i("NEWS_STORY_INDEX", Integer.parseInt(newStoryImageView.getTag().toString()) + "");
-
-
-
-        Fragment newsStoryFragment = new NewsStoryFragment();
-
-        newsStoryFragment.setArguments(bundle);
-
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace( R.id.newsStoryFragment, newsStoryFragment).addToBackStack( "tag" ).commit();
-
-
+        openNewsStoryFragment(bundle); //Open the News Story Fragment
     }
 
-
-
-
+    //OnClick listener: For each of the Top News Story images (ImageView)
     @Override
     public void onTopNewStoryClick(int position) {
-        topNewsStoryArrayList.get(position);
 
-        Log.i("onNoteClciked", position + "");
+        //CHECKPOINT: Verify that the "position" variable reflects the numbering of the selected Top News Story
+        Log.i("Top News Story Position",position + "");
 
-
-
-
-
-
-
+        //==== Send data to the News Story Fragment ====
         Bundle bundle = new Bundle();
+        bundle.putInt(NEWS_STORY_IMAGE_INT, topNewsStoryArrayList.get(position).getImage()); //Send the Resource ID (int) of the Image Resource of the selected Top News Story
+        bundle.putString(NEWS_STORY_TITLE, topNewsStoryArrayList.get(position).getTitle()); //Send the Title of the selected Top News Story
+        bundle.putString(NEW_STORY_DESCRIPTION, topNewsStoryArrayList.get(position).getDescription()); //Send the Description of the selected News Story
 
-
-        bundle.putInt(NEWS_STORY_IMAGE_INT, topNewsStoryArrayList.get(position).getImage());
-        bundle.putString(NEWS_STORY_TITLE, topNewsStoryArrayList.get(position).getTitle());
-        bundle.putString(NEW_STORY_DESCRIPTION, topNewsStoryArrayList.get(position).getDescription());
-
-
-
-
-
-        Fragment newsStoryFragment = new NewsStoryFragment();
-
-        newsStoryFragment.setArguments(bundle);
-
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace( R.id.newsStoryFragment, newsStoryFragment).addToBackStack( "tag" ).commit();
-
-
-
-
+        openNewsStoryFragment(bundle); //Open the News Story Fragment
     }
-
-
 }

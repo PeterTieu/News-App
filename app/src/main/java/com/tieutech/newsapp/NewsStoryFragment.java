@@ -27,25 +27,32 @@ import java.util.List;
  * Use the {@link NewsStoryFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
+
+//ABOUT:
+//Fragment to display a News Story. Opened by clicking on a News Story in the MainActivity
 public class NewsStoryFragment extends Fragment {
 
-    RecyclerView relatedNewsStoryRecyclerView;
-    RelatedNewsStoryRecyclerViewAdapter relatedNewsStoryRecyclerViewAdapter;
-    ImageView newsImageImageView;
-    TextView newsStoryTitleTextView;
-    TextView newsStoryDescriptionTextView;
+    //================ DECLARE VARIABLES ================
+    //Views
+    RecyclerView relatedNewsStoryRecyclerView; //RecyclerView
+    ImageView newsImageImageView; //News Story Image
+    TextView newsStoryTitleTextView; //News Story Title
+    TextView newsStoryDescriptionTextView; //News Story Description
 
+    //Key variables - to retrieve data from the Main Activity
     public static String NEWS_STORY_IMAGE_INT = "news_story_image_int";
     public static String NEWS_STORY_TITLE = "news_story_title";
     public static String NEW_STORY_DESCRIPTION = "news_story_description";
 
+    //Other variables
     int newsStoryImageInt;
     String newsStoryTitle;
     String newStoryDescription;
 
+    List<NewsStory> relatedNewsStoryArrayList = new ArrayList<>();  //Related News List (for the Related News vertical RecyclerView section)
 
-    List<NewsStory> relatedNewsStoryArrayList = new ArrayList<>();
-
+    //======> RELATED NEWS (data) <======
+    //Image resources
     int[] relatedNewsStoryImageList = {
             R.drawable.news_story_image_11,
             R.drawable.news_story_image_12,
@@ -55,6 +62,7 @@ public class NewsStoryFragment extends Fragment {
             R.drawable.news_story_image_16
     };
 
+    //Titles
     String[] relatedNewsStoryTitleList = {
             "Market subdued as flight cancellations hit travel stocks",
             "Joint plan for hydrogen hub next to wind farm",
@@ -64,6 +72,7 @@ public class NewsStoryFragment extends Fragment {
             "Cryptocurrency exchanges shun EU anti-laundering directive"
     };
 
+    //Descriptions
     String[] relatedNewsStoryDescriptionList = {
             "Travel shares fell this morning after airlines had to cancel flights, blaming the disruption on staff having coronavirus. IAG fell 2p, or 1.4 per cent, to 139¼p after the British Airways owner scaled back its timetable until the end of May because of staff shortages and illness caused by Covid. EasyJet, the budget airline, which has axed at least 222 flights since Friday, slipped 11½p, or 2.1 per cent, to 544p. ",
             "SSE and Siemens Gamesa plan to create a green hydrogen hub next to a Highlands wind farm. The two companies want to invest tens of millions of pounds to build an electrolyser to create the hydrogen and a battery storage facility at the Gordonbush site in Sutherland. They announced last year they were looking at opportunities to create facilities at onshore sites.",
@@ -73,9 +82,7 @@ public class NewsStoryFragment extends Fragment {
             "No cryptocurrency exchanges have registered with the Central Bank almost a year after an EU anti-money laundering and financial terrorism directive requiring them to do so came into force. The bank said it was engaging with a “significant” number of firms in relation to applications for registration and their anti-money laundering frameworks. It said it has “prioritised” the assessment of applications."
     };
 
-
-
-
+    //================ DEFINE METHODS ================
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -116,64 +123,49 @@ public class NewsStoryFragment extends Fragment {
         }
     }
 
+    //Upon the start of the creation of the entire view
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-
-
+        //If there are data sent from the Main Activity
         if (getArguments() != null) {
-
-            newsStoryImageInt = getArguments().getInt(NEWS_STORY_IMAGE_INT);
-            newsStoryTitle = getArguments().getString(NEWS_STORY_TITLE);
-            newStoryDescription = getArguments().getString(NEW_STORY_DESCRIPTION);
+            //Retrieve data sent from the Main Activity
+            newsStoryImageInt = getArguments().getInt(NEWS_STORY_IMAGE_INT); //News Story Image
+            newsStoryTitle = getArguments().getString(NEWS_STORY_TITLE); //News Story Title
+            newStoryDescription = getArguments().getString(NEW_STORY_DESCRIPTION); //News Story Description
         }
-
-
-
-
-
-
-
 
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_news_story, container, false);
     }
 
-
+    //Upon the creation of the entire view
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
 
+        //Obtain views
+        newsImageImageView = (ImageView) getView().findViewById(R.id.newsImageImageView); //News Story Image
+        newsStoryTitleTextView = (TextView) getView().findViewById(R.id.newsStoryTitleTextView); //News Story Title
+        newsStoryDescriptionTextView = (TextView) getView().findViewById(R.id.newsStoryDescriptionTextView); //News Story Description
+        relatedNewsStoryRecyclerView = (RecyclerView) getView().findViewById(R.id.relatedNewsStoriesRecyclerView); //RecyclerView to display the Related News Stories
 
-        //Obtain RecyclerView view (inside activity_main.xml)
-
-
-        newsImageImageView = (ImageView) getView().findViewById(R.id.newsImageImageView);
-        newsStoryTitleTextView = (TextView) getView().findViewById(R.id.newsStoryTitleTextView);
-        newsStoryDescriptionTextView = (TextView) getView().findViewById(R.id.newsStoryDescriptionTextView);
-
-
-
+        //Modify the views
         newsImageImageView.setImageResource(newsStoryImageInt);
         newsStoryTitleTextView.setText(newsStoryTitle);
         newsStoryDescriptionTextView.setText(newStoryDescription);
 
+        //RecyclerViewAdapter to link the RecyclerView for Related Stories to the data
+        RelatedNewsStoryRecyclerViewAdapter relatedNewsStoryRecyclerViewAdapter = new RelatedNewsStoryRecyclerViewAdapter(relatedNewsStoryArrayList, getActivity()); //Instantiate the Recyclerview Adapter
+        relatedNewsStoryRecyclerView.setAdapter(relatedNewsStoryRecyclerViewAdapter); //Set the Adapter to the RecyclerView
 
+        //LinearLayoutManager to set the layout of the RecyclerView
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        relatedNewsStoryRecyclerView.setLayoutManager(layoutManager); //Link the LayoutManager to the RecyclerView
 
-
-
-
-        relatedNewsStoryRecyclerView = (RecyclerView) getView().findViewById(R.id.relatedNewsStoriesRecyclerView);
-        //Create RecyclerViewAdapter (which links the RecyclerView to the data)
-        RelatedNewsStoryRecyclerViewAdapter relatedNewsStoryRecyclerViewAdapter = new RelatedNewsStoryRecyclerViewAdapter(relatedNewsStoryArrayList, getActivity());
-        relatedNewsStoryRecyclerView.setAdapter(relatedNewsStoryRecyclerViewAdapter);
-        relatedNewsStoryRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-
-
+        //Instantiate all the Related News Story objects and add them to the relatedNewsStoryArrayList
         for (int i = 0; i < relatedNewsStoryImageList.length; i++) {
             NewsStory topNewsStory = new NewsStory(relatedNewsStoryImageList[i], relatedNewsStoryTitleList[i], relatedNewsStoryDescriptionList[i]);
             relatedNewsStoryArrayList.add(topNewsStory);
         }
-
-
     }
 }
